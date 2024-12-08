@@ -19,7 +19,7 @@ const  String customAmount = "₦300,000";
 
 
 //! Colors
-const Color kPrimaryColor = Color(0xffF000000);
+const Color kPrimaryColor = Color(0xfff000000);
 const Color lightScaffoldBackgroundColor = Color(0xffFFFDF7);
 const Color kTextColorsLight = Color(0xFF100C08);
 const Color navBarIconsInActiveColor = Color(0xff98A2B3);

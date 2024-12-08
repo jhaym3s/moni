@@ -13,19 +13,13 @@ class CustomNavigationBarScreen extends StatefulWidget {
   State<CustomNavigationBarScreen> createState() => _CustomNavigationBarScreenState();
 }
 class _CustomNavigationBarScreenState extends State<CustomNavigationBarScreen> {
-  late PageController _controller;
-   final int _activeIndex =  0 ;
+  late PageController _pageController;
+  int _activeIndex =  0 ;
 
   @override
   void initState() {
     super.initState();
-    _controller = PageController(initialPage: _activeIndex);
-  }
-
-  @override
-  void dispose() {
-    _controller.dispose();
-    super.dispose();
+    _pageController = PageController(initialPage: _activeIndex);
   }
    
    List<IconData> bottomNavIcons = [
@@ -45,23 +39,28 @@ class _CustomNavigationBarScreenState extends State<CustomNavigationBarScreen> {
           children: [
             PageView(
               physics: const NeverScrollableScrollPhysics(),
-              controller: _controller,
+              controller: _pageController,
               children: List.generate(bottomNavIcons.length, (index){
-                  return activeScreen(index);
+                  return activeScreen(_activeIndex);
               }),
             ),
-            Padding(
-              padding: const EdgeInsets.only(bottom: 6),
-              child: BottomNav(
-              bottomNavIcons: bottomNavIcons,
-              activeIndex: _activeIndex, 
-              onTap: () { },
-                  ),
-            )
+            BottomNav(
+            bottomNavIcons: bottomNavIcons,
+            activeIndex: _activeIndex, 
+            onTap: (index) {
+                  setState(() {
+                    _activeIndex = index;
+                  });
+                })
           ],
         ),
       ),
     );
+  }
+ @override
+  void dispose() {
+    _pageController.dispose();
+    super.dispose();
   }
 
   Widget activeScreen(int activeIndex){
@@ -69,7 +68,7 @@ class _CustomNavigationBarScreenState extends State<CustomNavigationBarScreen> {
         case 0:
           return const SearchScreen();
         case 2:
-          return const HomeScreen();
+          return const SearchScreen();
         default:
         return const HomeScreen();
       }
