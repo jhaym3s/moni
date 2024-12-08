@@ -17,16 +17,6 @@ const String kTimeFormat = 'HH:mm';
 const  String currencySymbol = "₦";
 const  String customAmount = "₦300,000";
 
-//! Various Sizes
-double kBottomBarIconSize = 32;
-const double kBoxDecorationRadius = 8.0;
-const double kFormFieldsRadius = 6.0;
-const double kRoundedButtonRadius = 24.0;
-const double kCardRadius = 24.0;
-const double kBadgeRadius = 16.0;
-const double kTimelineDateSize = 88.0;
-const double kBorderRadius = 10.0;
-const double kBottomNavBarHeight = 60.0;
 
 //! Colors
 const Color kPrimaryColor = Color(0xffF000000);
