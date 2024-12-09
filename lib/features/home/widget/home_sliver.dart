@@ -83,7 +83,6 @@ class _HomeSliverState extends State<HomeSliver> {
               image: AssetImage("assets/image/profile.jpg"),
               fit: BoxFit.cover,
             ),
-                  
                   ),
                  // child: Image.asset("assets/image/three.jpg"),
                 ),
@@ -159,7 +158,7 @@ class _HomeSliverState extends State<HomeSliver> {
               ),
             ],
           ),
-          const SizedBox(height: 36),
+         // const SizedBox(height: 14),
         ],
       ),
     );
