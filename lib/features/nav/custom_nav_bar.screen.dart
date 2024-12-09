@@ -27,7 +27,7 @@ class _CustomNavigationBarScreenState extends State<CustomNavigationBarScreen> {
     CupertinoIcons.chat_bubble_2,
     CupertinoIcons.home,
     CupertinoIcons.heart_fill,
-    CupertinoIcons.person,
+    CupertinoIcons.person_solid,
    ];
 
   @override

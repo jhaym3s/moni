@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:moniepoints_challenge/core/config/theme.dart';
 
 class BottomNav extends StatelessWidget {
   const BottomNav({super.key, required this.bottomNavIcons, required this.activeIndex, required this.onTap});
@@ -38,11 +39,12 @@ final IconData icon;
       padding: const EdgeInsets.all(8.0),
       child: CircleAvatar(
           backgroundColor:
-              isActive ? Colors.amber: Colors.black,
+              isActive ? context.appColors.primary: context.appColors.tertiary,
           radius: isActive ? 24 : 20,
           child: Icon(
             icon,
-            color: isActive ? Colors.black: Colors.amber,
+            color: isActive ? context.appColors.secondary
+            : context.appColors.primary,
           ),
         ),
     );
