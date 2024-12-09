@@ -33,27 +33,28 @@ class _CustomNavigationBarScreenState extends State<CustomNavigationBarScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SafeArea(
-        child: Stack(
-          alignment: Alignment.bottomCenter,
-          children: [
-            PageView(
-              physics: const NeverScrollableScrollPhysics(),
-              controller: _pageController,
-              children: List.generate(bottomNavIcons.length, (index){
-                  return activeScreen(_activeIndex);
-              }),
-            ),
-            BottomNav(
+      body: Stack(
+        alignment: Alignment.bottomCenter,
+        children: [
+          PageView(
+            physics: const NeverScrollableScrollPhysics(),
+            controller: _pageController,
+            children: List.generate(bottomNavIcons.length, (index){
+                return activeScreen(_activeIndex);
+            }),
+          ),
+          Padding(
+            padding: const  EdgeInsets.only(bottom: 25),
+            child: BottomNav(
             bottomNavIcons: bottomNavIcons,
             activeIndex: _activeIndex, 
             onTap: (index) {
                   setState(() {
                     _activeIndex = index;
                   });
-                })
-          ],
-        ),
+                }),
+          )
+        ],
       ),
     );
   }
@@ -68,9 +69,13 @@ class _CustomNavigationBarScreenState extends State<CustomNavigationBarScreen> {
         case 0:
           return const SearchScreen();
         case 2:
-          return const SearchScreen();
+          return const HomeScreen();
         default:
-        return const HomeScreen();
+        return const Scaffold(
+          body: Center(
+              child: Text("Nothing here"),
+          ),
+        );
       }
   }
 }

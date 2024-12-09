@@ -12,7 +12,7 @@ class ListingItem extends StatelessWidget {
 
   final String image;
   final String address;
-  final AlignmentGeometry alignment;
+  final Alignment alignment;
 
   @override
   Widget build(BuildContext context) {
@@ -21,8 +21,8 @@ class ListingItem extends StatelessWidget {
       children: [
         Container(
           alignment: Alignment.bottomCenter,
-          decoration: BoxDecoration(
-            borderRadius: const BorderRadius.all(Radius.circular(24)),
+          decoration:  BoxDecoration(
+            borderRadius: const  BorderRadius.all(Radius.circular(24)),
             image: DecorationImage(
               image: AssetImage(image),
               fit: BoxFit.cover,

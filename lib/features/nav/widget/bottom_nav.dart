@@ -43,8 +43,7 @@ final IconData icon;
           radius: isActive ? 24 : 20,
           child: Icon(
             icon,
-            color: isActive ? context.appColors.secondary
-            : context.appColors.primary,
+            color: context.appColors.secondary,
           ),
         ),
     );

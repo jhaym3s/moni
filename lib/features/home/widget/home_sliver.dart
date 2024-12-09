@@ -35,63 +35,42 @@ class _HomeSliverState extends State<HomeSliver> {
       }
     });
 
-      WidgetsBinding.instance.addPostFrameCallback((timeStamp) async {
-        await Future.delayed(const Duration(milliseconds: 800));
-        if (mounted) {
-          setState(() {
-            _animateName = true;
-          });
-        }
-        await Future.delayed(const Duration(milliseconds: 1000));
-        if (mounted) {
-          setState(() {
-            _animateLine1 = true;
-          });
-        }
-        await Future.delayed(const Duration(milliseconds: 200));
-        if (mounted) {
-          setState(() {
-            _animateLine2 = true;
-          });
-        }
-      });
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) async {
+      await Future.delayed(const Duration(milliseconds: 800));
+      if (mounted) {
+        setState(() {
+          _animateName = true;
+        });
+      }
+      await Future.delayed(const Duration(milliseconds: 1000));
+      if (mounted) {
+        setState(() {
+          _animateLine1 = true;
+        });
+      }
+      await Future.delayed(const Duration(milliseconds: 200));
+      if (mounted) {
+        setState(() {
+          _animateLine2 = true;
+        });
+      }
+    });
   }
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(left: 18, right: 18, top: 10),
+      padding: const EdgeInsets.only(left: 18, right: 18, top: 60),
       child: Column(
         children: [
-          SafeArea(
-            child: Row(
+          Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              AnimatedOpacity(
-                  duration: const Duration(milliseconds: 500),
-                  opacity: _animateLocation ? 1 : 0,
-                  child: Container(
-                    padding: const EdgeInsets.all(8),
-                    decoration: BoxDecoration(
-                         color: context.appColors.secondary,
-                         borderRadius: BorderRadius.circular(8),
-
-                    ),
-                    child:  Row(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        Icon(
-                          Icons.location_on,
-                          color: context.appColors.onPrimary,
-                        ),
-                        Text(
-                          'Saint Petersburg',
-                          style: TextStyle(
-                              color: context.appColors.onPrimary, fontSize: 16),
-                        ),
-                      ],
-                    ),
-                  )),
+             const PinLocation(),
+              // AnimatedOpacity(
+              //     duration: const Duration(milliseconds: 500),
+              //     opacity: _animateLocation ? 1 : 0,
+              //     child: const PinLocation()),
               AnimatedScale(
                 duration: const Duration(milliseconds: 500),
                 scale: _animateAvatar ? 1 : 0,
@@ -100,31 +79,31 @@ class _HomeSliverState extends State<HomeSliver> {
                   width: 48,
                   decoration: const BoxDecoration(
                     shape: BoxShape.circle,
-                    gradient: LinearGradient(
-                      begin: Alignment.topLeft,
-                      end: Alignment.bottomRight,
-                      stops:  [0.1, 0.6],
-                      colors: [
-                        Colors.red,
-                        Colors.blue,
-                      ],
-                    ),
+                 image :   DecorationImage(
+              image: AssetImage("assets/image/profile.jpg"),
+              fit: BoxFit.cover,
+            ),
+                  
                   ),
-                  child: Image.asset('assets/image/four.jpg'),
+                 // child: Image.asset("assets/image/three.jpg"),
                 ),
               ),
             ],
-          )),
+          ),
+          const SizedBox(
+            height: 20,
+          ),
           Align(
             alignment: Alignment.topLeft,
             child: AnimatedOpacity(
               duration: const Duration(milliseconds: 500),
               opacity: _animateName ? 1 : 0,
-              child: const  Text(
+              child: Text(
                 'Hi, Marina',
                 style: TextStyle(
-                  color: Colors.cyan,
-                ),
+                    color: context.appColors.onPrimary.withOpacity(.5),
+                    fontSize: 22,
+                    fontWeight: FontWeight.w600),
               ),
             ),
           ),
@@ -134,11 +113,11 @@ class _HomeSliverState extends State<HomeSliver> {
               child: AnimatedSlide(
                 duration: const Duration(milliseconds: 500),
                 offset: _animateLine1 ? Offset.zero : const Offset(0, 1),
-                child: const Text(
+                child: Text(
                   "let's select your",
                   style: TextStyle(
                     fontSize: 36,
-                    color: Colors.indigoAccent,
+                    color: context.appColors.tertiary,
                   ),
                 ),
               ),
@@ -150,11 +129,11 @@ class _HomeSliverState extends State<HomeSliver> {
               child: AnimatedSlide(
                 duration: const Duration(milliseconds: 500),
                 offset: _animateLine2 ? Offset.zero : const Offset(0, 1),
-                child: const Text(
+                child: Text(
                   'perfect place',
                   style: TextStyle(
                     fontSize: 36,
-                    color: Colors.grey,
+                    color: context.appColors.tertiary,
                   ),
                 ),
               ),
@@ -163,10 +142,10 @@ class _HomeSliverState extends State<HomeSliver> {
           const SizedBox(height: 36),
           const Row(
             children: [
-               Expanded(
+              Expanded(
                 child: OfferCard(
                   title: 'BUY',
-                  count: 1034, 
+                  count: 1034,
                   isCircle: true,
                 ),
               ),
@@ -179,9 +158,70 @@ class _HomeSliverState extends State<HomeSliver> {
                 ),
               ),
             ],
-          )
+          ),
+          const SizedBox(height: 36),
         ],
       ),
     );
+  }
+}
+
+class PinLocation extends StatefulWidget {
+  const PinLocation({
+    super.key,
+  });
+
+  @override
+  State<PinLocation> createState() => _PinLocationState();
+}
+
+class _PinLocationState extends State<PinLocation> {
+
+  double _width = 10;
+  bool _animateText = false;
+  @override
+  void initState() {
+    super.initState();
+    // Trigger the expansion after the widget is built
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
+      setState(() {
+        _width = 180; 
+      });
+       await Future.delayed(const Duration(milliseconds: 600));
+       setState(() {
+       _animateText = true;
+       });
+    });
+  }
+  @override
+  Widget build(BuildContext context) {
+    return AnimatedContainer(
+              width: _width,
+              curve: Curves.easeInOut,
+                padding: const EdgeInsets.all(8),
+                decoration: BoxDecoration(
+                  color: context.appColors.secondary,
+                  borderRadius: BorderRadius.circular(8),
+                ),
+                duration: const Duration(milliseconds: 500),
+                child: AnimatedOpacity(
+                  duration: const Duration(milliseconds: 700),
+                   opacity: _animateText ? 1 : 0,
+                  child: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Icon(
+                        Icons.location_on_rounded,
+                        color: context.appColors.onPrimary,
+                      ),
+                      Text(
+                        'Saint Petersburg',
+                        style: TextStyle(
+                            color: context.appColors.onPrimary, fontSize: 16),
+                      ),
+                    ],
+                  ),
+                ),
+     );
   }
 }

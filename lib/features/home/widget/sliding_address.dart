@@ -1,11 +1,13 @@
+import 'dart:math';
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:moniepoints_challenge/core/config/theme.dart';
 
 class SlidingAddress extends StatefulWidget {
   const SlidingAddress({super.key, required this.address, required this.alignment});
   final String address;
-  final AlignmentGeometry alignment;
+  final Alignment alignment;
   @override
   State<SlidingAddress> createState() => _SlidingAddressState();
 }
@@ -18,8 +20,8 @@ class _SlidingAddressState extends State<SlidingAddress> {
 void initState() {
   super.initState();
   WidgetsBinding.instance.addPostFrameCallback((timeStamp) async {
-      //final delay = Random().nextInt(1000) + 3700;
-      await Future.delayed(Duration(milliseconds: 100));
+      final delay = Random().nextInt(1000) + 3700;
+      await Future.delayed(Duration(milliseconds: delay));
       if (mounted) {
         setState(() {
           _animateButton = true;
@@ -38,11 +40,11 @@ void initState() {
     return LayoutBuilder(builder: (context, constraints) {
       return AnimatedContainer(
         duration: const Duration(milliseconds: 400),
-        height: 40,
+        height: 45,
         width: _animateButton ? constraints.maxWidth : 40,
-        decoration: const BoxDecoration(
+        decoration: const  BoxDecoration(
             borderRadius:  BorderRadius.all(Radius.circular(30)),
-            color: Colors.green),
+            color: Colors.white70),
         child: ClipRRect(
           borderRadius: const BorderRadius.all(Radius.circular(30)),
           child: BackdropFilter(
@@ -66,12 +68,12 @@ void initState() {
                     duration: const Duration(milliseconds: 400),
                     child: Container(
                       padding: const EdgeInsets.only(right: 1, top: 2),
-                      child: const CircleAvatar(
-                        radius: 18,
-                        backgroundColor: Colors.green,
+                      child:  CircleAvatar(
+                        radius: 21,
+                        backgroundColor: context.appColors.secondary,
                         child: Icon(
                           Icons.keyboard_arrow_right_sharp,
-                          color: Colors.pink,
+                          color: context.appColors.onPrimary,
                           size: 16,
                         ),
                       ),

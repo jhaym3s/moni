@@ -27,7 +27,7 @@ class _HomeScreenState extends State<HomeScreen> {
             return [
               const SliverAppBar(
                 backgroundColor: Colors.transparent,
-                expandedHeight: 420,
+                expandedHeight: 470,
                 flexibleSpace: FlexibleSpaceBar(
                   background: HomeSliver(),
                 ),

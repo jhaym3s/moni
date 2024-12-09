@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
-
 import '../../../core/config/image.dart';
 import 'listing_item.dart';
+
 typedef ListingModel = ({
   String address,
   String image,
@@ -25,25 +25,25 @@ class _ListingsState extends State<Listings> {
   static List<ListingModel> listings = [
     (
       address: 'Gladkova St., 25',
-      image: "assets/image/four.jpg",
+      image: AssetImages.rental1,
       mainAxis: 2,
       crossAxis: 1
     ),
     (
       address: 'Gubina St., 11',
-      image: "assets/image/four.jpg",
+      image: AssetImages.rental2,
       mainAxis: 1,
       crossAxis: 2
     ),
     (
       address: 'Trefoleva St., 43',
-      image: "assets/image/four.jpg",
+      image: AssetImages.rental3,
       mainAxis: 1,
       crossAxis: 1
     ),
     (
       address: 'Sedova St., 22',
-      image: "assets/image/four.jpg",
+      image: AssetImages.rental4,
       mainAxis: 1,
       crossAxis: 1
     )

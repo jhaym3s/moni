@@ -3,4 +3,5 @@ class AssetImages{
   static const rental2 = "assets/image/two.jpg";
   static const rental3 = "assets/image/three.jpg";
   static const rental4 = "assets/image/four.jpg";
+  static const profile = "assets/image/profile.jpg";
 }
