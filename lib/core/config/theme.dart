@@ -6,11 +6,7 @@ final ColorScheme colorScheme = const  ColorScheme.light().copyWith(
   secondary: const Color(0xffffffff), 
   tertiary: const Color(0xff000000), 
   onPrimary: Colors.brown.shade300,
-  // secondary: const Color(0xffa5957d), 
-  // secondaryFixed: const Color(0xff737373),
-  // tertiary: const Color(0xffd97805),
-  // shadow: const Color(0xff2b2b2b),
-  // scrim: const Color(0xffe9a135)
+   shadow:  Colors.white38,
   );
 
  extension VBankAppExtension on BuildContext {

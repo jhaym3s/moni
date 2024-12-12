@@ -21,13 +21,13 @@ class _HomeScreenState extends State<HomeScreen> {
               colors: [Colors.white.withOpacity(0.1), context.appColors.primary],
               begin: Alignment.topLeft,
               end: Alignment.bottomRight,
-              stops: [0.2, 0.9])),
+              stops: const [0.2, 0.9])),
       child: NestedScrollView(
           headerSliverBuilder: (BuildContext headerContext, bool boolean) {
             return [
               const SliverAppBar(
                 backgroundColor: Colors.transparent,
-                expandedHeight: 460,
+                expandedHeight: 440,
                 flexibleSpace: FlexibleSpaceBar(
                   background: HomeSliver(),
                 ),

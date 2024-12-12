@@ -12,19 +12,38 @@ class CustomNavigationBarScreen extends StatefulWidget {
   @override
   State<CustomNavigationBarScreen> createState() => _CustomNavigationBarScreenState();
 }
-class _CustomNavigationBarScreenState extends State<CustomNavigationBarScreen> {
+class _CustomNavigationBarScreenState extends State<CustomNavigationBarScreen>  with SingleTickerProviderStateMixin {
   late PageController _pageController;
-  int _activeIndex =  0 ;
+  late AnimationController _controller;
+  late Animation<Offset> _slideAnimation;
+  int _activeIndex =  2 ;
 
   @override
   void initState() {
     super.initState();
     _pageController = PageController(initialPage: _activeIndex);
+    _controller = AnimationController(
+      vsync: this,
+      duration: const Duration(milliseconds: 200),
+    );
+    _slideAnimation = Tween<Offset>(
+      begin: const Offset(0, 1), 
+      end: Offset.zero,          
+    ).animate(CurvedAnimation(
+      parent: _controller,
+      curve: Curves.easeInOut,
+    ));
+     WidgetsBinding.instance.addPostFrameCallback((timeStamp) async {
+      await Future.delayed(const Duration(milliseconds: 5000));
+      _controller.forward();
+      });
+    // Start the animation
+    
   }
    
    List<IconData> bottomNavIcons = [
     CupertinoIcons.search,
-    CupertinoIcons.chat_bubble_2,
+    Icons.message,
     CupertinoIcons.home,
     CupertinoIcons.heart_fill,
     CupertinoIcons.person_solid,
@@ -43,16 +62,19 @@ class _CustomNavigationBarScreenState extends State<CustomNavigationBarScreen> {
                 return activeScreen(_activeIndex);
             }),
           ),
-          Padding(
-            padding: const  EdgeInsets.only(bottom: 25),
-            child: BottomNav(
-            bottomNavIcons: bottomNavIcons,
-            activeIndex: _activeIndex, 
-            onTap: (index) {
-                  setState(() {
-                    _activeIndex = index;
-                  });
-                }),
+          SlideTransition(
+            position: _slideAnimation,
+            child: Padding(
+              padding: const  EdgeInsets.only(bottom: 25),
+              child: BottomNav(
+              bottomNavIcons: bottomNavIcons,
+              activeIndex: _activeIndex, 
+              onTap: (index) {
+                    setState(() {
+                      _activeIndex = index;
+                    });
+                  }),
+            ),
           )
         ],
       ),

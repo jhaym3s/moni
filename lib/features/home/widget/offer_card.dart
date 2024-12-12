@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:moniepoints_challenge/core/config/constants.dart';
 import 'package:moniepoints_challenge/core/config/theme.dart';
 
 class OfferCard extends StatefulWidget {
@@ -8,14 +7,9 @@ class OfferCard extends StatefulWidget {
     required this.title,
     required this.count,
     required this.isCircle,
-    this.color,
-    this.textColor,
   });
-
   final String title;
   final int count;
-  final Color? color;
-  final Color? textColor;
   final bool isCircle;
 
   @override
@@ -26,8 +20,8 @@ class _OfferCardState extends State<OfferCard>
     with SingleTickerProviderStateMixin {
   late AnimationController _animationController;
   late Animation<int> _animateCount;
-
   bool _animateSize = false;
+  
 
   @override
   void initState() {
